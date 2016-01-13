@@ -1,8 +1,9 @@
-//Affichage du plateau de jeu
+// Affichage du plateau de jeu
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseMotionListener;
 import javax.swing.border.*;
 
 public class Vue extends JFrame
@@ -56,6 +57,7 @@ public class Vue extends JFrame
     private JPanel panoChat;
     private JPanel panoJoueur;
     private JPanel panoAdversaire;
+    private JPanel panoEspaces;
 
     // définition de la vue
     public Vue(Model model)
@@ -108,6 +110,7 @@ public class Vue extends JFrame
 
     public void creerWidget()
     {
+
         // panel du plateau
         panoPlateau = new JPanel(new GridLayout(3,3));
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
@@ -121,6 +124,10 @@ public class Vue extends JFrame
             }
         }
 
+        // permet qu'il n'y est pas d'espaces entre les cartes placées sur le plateau
+        panoEspaces = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        panoEspaces.add(panoPlateau);
+
         // panel de l'adversaire et du joueur
         panoCartesAdversaire = new JPanel();
         panoCartesJoueur = new JPanel();
@@ -133,7 +140,7 @@ public class Vue extends JFrame
         panoCartesAdversaire.add(scoreJoueur);
         panoCartesJoueur.add(scoreAdversaire);
 
-        // gère l'espacement êntre le score et les cartes
+        // gère l'espacement être le score et les cartes
         panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, 200)));
         panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, 200)));
 
@@ -151,6 +158,7 @@ public class Vue extends JFrame
 
         panoAdversaire = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         panoAdversaire.add(panoCartesAdversaire);
+
         // panel du chat (miaou)
         panoChat = new JPanel();
         panoChat.add(text);
@@ -161,9 +169,22 @@ public class Vue extends JFrame
         panoPlace.add(panoJoueur, BorderLayout.WEST);
         panoPlace.add(panoAdversaire, BorderLayout.EAST);
         panoPlace.add(panoChat, BorderLayout.SOUTH);
-        panoPlace.add(panoPlateau, BorderLayout.CENTER);
+        panoPlace.add(panoEspaces, BorderLayout.CENTER);
 
         setContentPane(panoPlace);
 
 	}
+
+    public void setMouseControler(MouseMotionListener e)
+    {
+        int i, j;
+        for(i=0; i<plateau.length;i++)
+        {
+            for(j=0; j<plateau[i].length;j++)
+            {
+                plateau[i][j].addMouseMotionListener(e);
+            }
+        }
+    }
+
 }
