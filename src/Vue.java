@@ -164,5 +164,6 @@ public class Vue extends JFrame
 		panoPlace.add(panoPlateau, BorderLayout.CENTER);
 
 		setContentPane(panoPlace);
+
 	}
 }
