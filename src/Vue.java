@@ -11,11 +11,11 @@ public class Vue extends JFrame
     // cartes du joueur pour la maquette
 	private ImageIcon[] teamBleue =
 	{
-		new ImageIcon(getClass().getResource("Images/Athena_Bleu.jpg")),
-		new ImageIcon(getClass().getResource("Images/Hades_Bleu.jpg")),
-		new ImageIcon(getClass().getResource("Images/Shion_Bleu.jpg")),
-		new ImageIcon(getClass().getResource("Images/Shiryu_Bleu.jpg")),
-		new ImageIcon(getClass().getResource("Images/VieuxMaitre_Bleu.jpg"))
+		new ImageIcon(getClass().getResource("Images/Aiolia_Bleu.jpg")),
+		new ImageIcon(getClass().getResource("Images/Aioros_Bleu.jpg")),
+		new ImageIcon(getClass().getResource("Images/Aldebaran_Bleu.jpg")),
+		new ImageIcon(getClass().getResource("Images/Algol_Bleu.jpg")),
+		new ImageIcon(getClass().getResource("Images/Aphrodite_Bleu.jpg"))
 	};
 
     // carte de l'adversaire pour la maquette
@@ -63,7 +63,7 @@ public class Vue extends JFrame
 		initAttribut();
 		creerWidget();
 
-		setSize(800,700);
+		setSize(1100,700);
 		setVisible(true);
 		setResizable(false);// important pour pas avoir a gérer la redifinition d'écran
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -134,16 +134,16 @@ public class Vue extends JFrame
         panoCartesJoueur.add(scoreAdversaire);
 
         // gère l'espacement êntre le score et les cartes
-        panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, 80)));
-        panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, 80)));
+        panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, 200)));
+        panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, 200)));
 
         // placement des cartes dans leurs panel respectifs
 		for(i=0; i<adversaire.length; i++)
 		{
-            panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, -10)));
+            panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, -150)));
             panoCartesAdversaire.add(adversaire[i]);
 
-            panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, -10)));
+            panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, -150)));
             panoCartesJoueur.add(joueur[i]);
 		}
         panoJoueur = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
