@@ -128,17 +128,17 @@ public class Vue extends JFrame
         panoEspaces = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         panoEspaces.add(panoPlateau);
 
-        // panel de l'adversaire et du joueur
+        // panels de l'adversaire et du joueur
         panoCartesAdversaire = new JPanel();
         panoCartesJoueur = new JPanel();
 
-        //
+        // organise les cartes horizontalement
         panoCartesAdversaire.setLayout(new BoxLayout(panoCartesAdversaire, BoxLayout.Y_AXIS));
         panoCartesJoueur.setLayout(new BoxLayout(panoCartesJoueur, BoxLayout.Y_AXIS));
 
         //ajout des scores
-        panoCartesAdversaire.add(scoreJoueur);
-        panoCartesJoueur.add(scoreAdversaire);
+        panoCartesAdversaire.add(scoreAdversaire);
+        panoCartesJoueur.add(scoreJoueur);
 
         // gère l'espacement être le score et les cartes
         panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, 200)));
@@ -178,13 +178,11 @@ public class Vue extends JFrame
     public void setMouseControler(MouseMotionListener e)
     {
         int i, j;
-        for(i=0; i<plateau.length;i++)
+        for(i=0; i<adversaire.length;i++)
         {
-            for(j=0; j<plateau[i].length;j++)
-            {
-                plateau[i][j].addMouseMotionListener(e);
-            }
+            adversaire[i].addMouseMotionListener(e);
+            joueur[i].addMouseMotionListener(e);
+
         }
     }
-
 }
