@@ -14,10 +14,12 @@ public class ControlMouseOver extends Control implements MouseMotionListener
             super(model, vue);
             vue.setMouseControler(this);
         }
+
         public void mouseDragged(MouseEvent e)
         {
             System.out.println("coucou");
         }
+
         public void mouseMoved(MouseEvent e)
         {
             System.out.println("pu coucou");
