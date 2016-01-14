@@ -16,15 +16,21 @@ public class ControlMouseOver extends Control implements MouseMotionListener
         }
 
         // Correspond au clic maintenu
+        @Override
         public void mouseDragged(MouseEvent e)
         {
-            System.out.println("coucou");
+
         }
 
         // correspond au MouseOver
+        @Override
         public void mouseMoved(MouseEvent e)
         {
-
+            int i;
+            for(i=0;i<vue.teamBleue.length;i++)
+            {
+                System.out.println(vue.teamBleue[i]);
+            }
         }
 
 
