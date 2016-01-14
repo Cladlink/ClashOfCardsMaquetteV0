@@ -138,7 +138,7 @@ public class Vue extends JFrame
         panoCartesAdversaire.setLayout(new BoxLayout(panoCartesAdversaire, BoxLayout.Y_AXIS));
         panoCartesJoueur.setLayout(new BoxLayout(panoCartesJoueur, BoxLayout.Y_AXIS));
 
-        // gère l'espacement être le score et les cartes
+        // gère l'espacement entre le score et les cartes
         panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, 200)));
         panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, 200)));
 
