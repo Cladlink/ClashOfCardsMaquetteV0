@@ -8,9 +8,9 @@ import javax.swing.border.*;
 
 public class Vue extends JFrame
 {
-    private int i, j ;
+    public int i, j ;
     // cartes du joueur pour la maquette
-    private ImageIcon[] teamBleue =
+    public ImageIcon[] teamBleue =
             {
                     new ImageIcon(getClass().getResource("Images/Aiolia_Bleu.jpg")),
                     new ImageIcon(getClass().getResource("Images/Aioros_Bleu.jpg")),
@@ -20,7 +20,7 @@ public class Vue extends JFrame
             };
 
     // carte de l'adversaire pour la maquette
-    private ImageIcon[] teamRouge =
+    public ImageIcon[] teamRouge =
             {
                     new ImageIcon(getClass().getResource("Images/Aiolia_Rouge.jpg")),
                     new ImageIcon(getClass().getResource("Images/Aioros_Rouge.jpg")),
@@ -30,34 +30,36 @@ public class Vue extends JFrame
             };
 
     // images des scores
-    private ImageIcon scoreRouge;
-    private ImageIcon scoreBleu;
+    public ImageIcon scoreRouge;
+    public ImageIcon scoreBleu;
 
 
     // éléments du chat
-    private JButton envoyer ;
-    private JTextField text ;
+    public JButton envoyer ;
+    public JTextField text ;
 
     // cartes des joueurs
-    private JLabel[] joueur;
-    private JLabel[] adversaire;
+    public JLabel[] joueur;
+    public JLabel[] adversaire;
 
     // scores des joueurs
-    private JLabel scoreJoueur ;
-    private JLabel scoreAdversaire ;
+    public JLabel scoreJoueur ;
+    public JLabel scoreAdversaire ;
 
     // plateau de jeu
-    private JLabel[][] plateau;
+    public JLabel[][] plateau;
 
     // Les JPanels
-    private JPanel panoCartesJoueur;
-    private JPanel panoPlace;
-    private JPanel panoCartesAdversaire;
-    private JPanel panoPlateau;
-    private JPanel panoChat;
-    private JPanel panoJoueur;
-    private JPanel panoAdversaire;
-    private JPanel panoEspaces;
+    public JPanel panoCartesJoueur;
+    public JPanel panoPlace;
+    public JPanel panoCartesAdversaire;
+    public JPanel panoPlateau;
+    public JPanel panoChat;
+    public JPanel panoJoueur;
+    public JPanel panoAdversaire;
+    public JPanel panoEspaces;
+    public JPanel panoPlaceScoreCartesJoueur;
+    public JPanel panoPlaceScoreCartesAdversaire;
 
     // définition de la vue
     public Vue(Model model)
@@ -136,10 +138,6 @@ public class Vue extends JFrame
         panoCartesAdversaire.setLayout(new BoxLayout(panoCartesAdversaire, BoxLayout.Y_AXIS));
         panoCartesJoueur.setLayout(new BoxLayout(panoCartesJoueur, BoxLayout.Y_AXIS));
 
-        //ajout des scores
-        panoCartesAdversaire.add(scoreAdversaire);
-        panoCartesJoueur.add(scoreJoueur);
-
         // gère l'espacement être le score et les cartes
         panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, 200)));
         panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, 200)));
@@ -153,11 +151,21 @@ public class Vue extends JFrame
             panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, -150)));
             panoCartesJoueur.add(joueur[i]);
         }
-        panoJoueur = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
-        panoJoueur.add(panoCartesJoueur);
 
+        // permet de placer le score et les cartes à l'intérieur du panel panoJoueur
+        panoPlaceScoreCartesJoueur = new JPanel(new BorderLayout());
+        panoPlaceScoreCartesJoueur.add(scoreJoueur, BorderLayout.NORTH);
+        panoPlaceScoreCartesJoueur.add(panoCartesJoueur, BorderLayout.SOUTH);
+
+        panoPlaceScoreCartesAdversaire = new JPanel(new BorderLayout());
+        panoPlaceScoreCartesAdversaire.add(scoreAdversaire, BorderLayout.NORTH);
+        panoPlaceScoreCartesAdversaire.add(panoCartesAdversaire, BorderLayout.SOUTH);
+
+        // panel qui permet d'afficher une marge sur les côtés
+        panoJoueur = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        panoJoueur.add(panoPlaceScoreCartesJoueur);
         panoAdversaire = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
-        panoAdversaire.add(panoCartesAdversaire);
+        panoAdversaire.add(panoPlaceScoreCartesAdversaire);
 
         // panel du chat (miaou)
         panoChat = new JPanel();
@@ -177,7 +185,6 @@ public class Vue extends JFrame
 
     public void setMouseControler(MouseMotionListener e)
     {
-        int i, j;
         for(i=0; i<adversaire.length;i++)
         {
             adversaire[i].addMouseMotionListener(e);
