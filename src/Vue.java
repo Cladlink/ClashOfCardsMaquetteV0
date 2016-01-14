@@ -67,6 +67,7 @@ public class Vue extends JFrame
         initAttribut();
         creerWidget();
 
+
         setSize(1100,700);
         setVisible(true);
         setResizable(false);// important pour pas avoir a gérer la redifinition d'écran
