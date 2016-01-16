@@ -2,37 +2,65 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.border.*;
 
 public class Vue extends JFrame
 {
     public int i, j ;
+
     // cartes du joueur pour la maquette
+    public ImageIcon empty;
+
     public ImageIcon[] teamBleue =
-            {
-                    new ImageIcon(getClass().getResource("Images/Aiolia_Bleu.jpg")),
-                    new ImageIcon(getClass().getResource("Images/Aioros_Bleu.jpg")),
-                    new ImageIcon(getClass().getResource("Images/Aldebaran_Bleu.jpg")),
-                    new ImageIcon(getClass().getResource("Images/Algol_Bleu.jpg")),
-                    new ImageIcon(getClass().getResource("Images/Aphrodite_Bleu.jpg"))
-            };
+        {
+            new ImageIcon(getClass().getResource("Images/Aiolia_Bleu.jpg")),
+            new ImageIcon(getClass().getResource("Images/Aioros_Bleu.jpg")),
+            new ImageIcon(getClass().getResource("Images/Aldebaran_Bleu.jpg")),
+            new ImageIcon(getClass().getResource("Images/Algol_Bleu.jpg")),
+            new ImageIcon(getClass().getResource("Images/Aphrodite_Bleu.jpg"))
+        };
 
     // carte de l'adversaire pour la maquette
     public ImageIcon[] teamRouge =
-            {
-                    new ImageIcon(getClass().getResource("Images/Aiolia_Rouge.jpg")),
-                    new ImageIcon(getClass().getResource("Images/Aioros_Rouge.jpg")),
-                    new ImageIcon(getClass().getResource("Images/Aldebaran_Rouge.jpg")),
-                    new ImageIcon(getClass().getResource("Images/Algol_Rouge.jpg")),
-                    new ImageIcon(getClass().getResource("Images/Aphrodite_Rouge.jpg"))
-            };
+        {
+            new ImageIcon(getClass().getResource("Images/Aiolia_Rouge.jpg")),
+            new ImageIcon(getClass().getResource("Images/Aioros_Rouge.jpg")),
+            new ImageIcon(getClass().getResource("Images/Aldebaran_Rouge.jpg")),
+            new ImageIcon(getClass().getResource("Images/Algol_Rouge.jpg")),
+            new ImageIcon(getClass().getResource("Images/Aphrodite_Rouge.jpg"))
+        };
 
     // images des scores
-    public ImageIcon scoreRouge;
-    public ImageIcon scoreBleu;
-
+    public ImageIcon[] scoreBleu =
+            {
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_0.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_1.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_2.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_3.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_4.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_5.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_6.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_7.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_8.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_9.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Bleu_Mini_10.png"))
+            };
+    public ImageIcon[] scoreRouge =
+            {
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_0.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_1.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_2.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_3.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_4.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_5.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_6.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_7.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_8.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_9.png")),
+                    new ImageIcon(getClass().getResource("Images/Score/Score_Rouge_Mini_10.png"))
+            };
 
     // éléments du chat
     public JButton envoyer ;
@@ -76,6 +104,7 @@ public class Vue extends JFrame
 
     public void initAttribut()
     {
+        empty = new ImageIcon(getClass().getResource("Images/Empty.jpg"));
 
         envoyer = new JButton("Envoyer");
         text = new JTextField();
@@ -84,11 +113,9 @@ public class Vue extends JFrame
         joueur = new JLabel[5];
         adversaire = new JLabel[5];
 
-        scoreRouge = new ImageIcon(getClass().getResource("Images/Score_Rouge_Mini.png"));
-        scoreBleu = new ImageIcon(getClass().getResource("Images/Score_Bleu_Mini.png"));
 
-        scoreJoueur = new JLabel(scoreBleu);
-        scoreAdversaire = new JLabel(scoreRouge);
+        scoreJoueur = new JLabel(scoreBleu[5]);
+        scoreAdversaire = new JLabel(scoreRouge[5]);
 
         // permet de faire une case plus grande pour le score
         scoreJoueur.setMaximumSize(new Dimension(100,100));
@@ -100,7 +127,7 @@ public class Vue extends JFrame
         {
             for (j=0; j<plateau[i].length;j++)
             {
-                plateau[i][j]=new JLabel(teamBleue[0]);
+                plateau[i][j]=new JLabel(empty);
                 plateau[i][j].setMaximumSize(new Dimension(50, 50));// 50 est un test
             }
         }
@@ -146,11 +173,20 @@ public class Vue extends JFrame
         // placement des cartes dans leurs panel respectifs
         for(i=0; i<adversaire.length; i++)
         {
-            panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, -150)));
-            panoCartesAdversaire.add(adversaire[i]);
+            if(adversaire[i]!=null)
+            {
+                panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, -150)));
+                panoCartesAdversaire.add(adversaire[i]);
+            }
 
-            panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, -150)));
-            panoCartesJoueur.add(joueur[i]);
+        }
+        for(i=0; i<joueur.length; i++)
+        {
+            if(joueur[i]!=null)
+            {
+                panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, -150)));
+                panoCartesJoueur.add(joueur[i]);
+            }
         }
 
         // permet de placer le score et les cartes à l'intérieur du panel panoJoueur
@@ -181,7 +217,6 @@ public class Vue extends JFrame
         panoPlace.add(panoEspaces, BorderLayout.CENTER);
 
         setContentPane(panoPlace);
-
 	}
 
     public void setMouseControler(MouseMotionListener e)
@@ -191,6 +226,28 @@ public class Vue extends JFrame
             adversaire[i].addMouseMotionListener(e);
             joueur[i].addMouseMotionListener(e);
 
+        }
+    }
+    public void setMouseButton(MouseListener e)
+    {
+        for(i=0; i<adversaire.length;i++)
+        {
+            if(adversaire[i]!= null)
+                adversaire[i].addMouseListener(e);
+        }
+        for(i=0; i<joueur.length;i++)
+        {
+            if(joueur[i]!=null)
+                joueur[i].addMouseListener(e);
+        }
+        for(i=0; i<plateau.length;i++)
+        {
+            for(j=0; j<plateau[i].length;j++)
+            {
+
+                if (plateau[i][j].getIcon() == empty)
+                    plateau[i][j].addMouseListener(e);
+            }
         }
     }
 }
