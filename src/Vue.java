@@ -176,6 +176,7 @@ public class Vue extends JFrame
             if(adversaire[i]!=null)
             {
                 panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, -150)));
+                adversaire[i].setOpaque(false);
                 panoCartesAdversaire.add(adversaire[i]);
             }
 
@@ -185,6 +186,7 @@ public class Vue extends JFrame
             if(joueur[i]!=null)
             {
                 panoCartesJoueur.add(Box.createRigidArea(new Dimension(0, -150)));
+                joueur[i].setOpaque(false);
                 panoCartesJoueur.add(joueur[i]);
             }
         }

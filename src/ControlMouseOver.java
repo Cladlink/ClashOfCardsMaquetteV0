@@ -5,6 +5,8 @@
 import java.awt.event.*;
 import java.util.EventListener;
 
+import javax.swing.JLabel;
+
 public class ControlMouseOver extends Control implements MouseMotionListener
 {
     public ControlMouseOver(Model model, Vue vue)
@@ -23,17 +25,10 @@ public class ControlMouseOver extends Control implements MouseMotionListener
     // correspond au MouseOver
     @Override
     public void mouseMoved(MouseEvent e)
-    {/*
-        int i;
-        for(i=0;i<vue.teamBleue.length;i++)
-        {
-
-            if (e.getSource()==vue.joueur[i])
-            System.out.println(vue.teamBleue[i]);
-            else if(e.getSource()==vue.adversaire[i]);
-            System.out.println(vue.teamRouge[i]);
-
-        }*/
+    {
+    	JLabel event = (JLabel) e.getSource();
+    	event.setOpaque(true);
+    	event.repaint();
     }
 
 
