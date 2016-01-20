@@ -6,7 +6,6 @@
 
         private Model model;
         private Vue vue;
-        private ControlMouseOver controlMouseOver;
         private ControlMouseButton controlMouseButton;
 
 
@@ -14,8 +13,6 @@
         {
             this.model = model;
             vue = new Vue(model);
-            controlMouseOver = new ControlMouseOver(model, vue);
             controlMouseButton = new ControlMouseButton(model, vue);
-
         }
     }

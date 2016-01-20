@@ -220,16 +220,6 @@ public class Vue extends JFrame
 
         setContentPane(panoPlace);
 	}
-
-    public void setMouseControler(MouseMotionListener e)
-    {
-        for(i=0; i<adversaire.length;i++)
-        {
-            adversaire[i].addMouseMotionListener(e);
-            joueur[i].addMouseMotionListener(e);
-
-        }
-    }
     public void setMouseButton(MouseListener e)
     {
         for(i=0; i<adversaire.length;i++)

@@ -69,10 +69,28 @@ public class ControlMouseButton extends Control implements MouseListener
         }
     }
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e)
+    {
+
+        JLabel event = (JLabel) e.getSource();
+        event.setOpaque(true);
+
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println("in " + event.getIcon());
+        System.out.println("in " + event.isOpaque());
+        event.repaint();
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e)
+    {
+        JLabel event = (JLabel) e.getSource();
+        event.setOpaque(false);
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println("out " + event.getIcon());
+        System.out.println("out " + event.isOpaque());
+        event.repaint();
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {}
