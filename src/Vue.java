@@ -3,7 +3,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import javax.swing.border.*;
 
 public class Vue extends JFrame
@@ -162,7 +161,7 @@ public class Vue extends JFrame
         panoCartesAdversaire = new JPanel();
         panoCartesJoueur = new JPanel();
 
-        // organise les cartes horizontalement
+        // organise les cartes verticalement
         panoCartesAdversaire.setLayout(new BoxLayout(panoCartesAdversaire, BoxLayout.Y_AXIS));
         panoCartesJoueur.setLayout(new BoxLayout(panoCartesJoueur, BoxLayout.Y_AXIS));
 
@@ -175,7 +174,7 @@ public class Vue extends JFrame
         {
             if(adversaire[i]!=null)
             {
-                panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, -150)));
+                    panoCartesAdversaire.add(Box.createRigidArea(new Dimension(0, -150)));
                 adversaire[i].setOpaque(false);
                 panoCartesAdversaire.add(adversaire[i]);
             }
